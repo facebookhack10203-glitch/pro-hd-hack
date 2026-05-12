@@ -20,8 +20,6 @@ color:white;
 overflow-x:hidden;
 }
 
-/* LOGIN */
-
 #loginPage{
 width:100%;
 height:100vh;
@@ -75,8 +73,6 @@ font-size:18px;
 font-weight:bold;
 cursor:pointer;
 }
-
-/* MAIN */
 
 #mainPage{
 display:none;
@@ -167,8 +163,6 @@ font-size:18px;
 
 <body>
 
-<!-- LOGIN -->
-
 <div id="loginPage">
 
 <div class="login-box">
@@ -189,8 +183,6 @@ LOGIN
 
 </div>
 
-<!-- MAIN -->
-
 <div id="mainPage">
 
 <div class="logo">
@@ -204,7 +196,7 @@ CURRENT PERIOD
 </div>
 
 <div class="period" id="period">
-20260512100052251
+Loading...
 </div>
 
 <div class="timer" id="timer">
@@ -247,8 +239,6 @@ PRO HD HACK VIP SERVER
 
 <script>
 
-/* LOGIN */
-
 function login(){
 
 let user =
@@ -274,24 +264,20 @@ alert("Wrong Username or Password");
 }
 
 /* =========================
-   LIVE PERIOD SYSTEM
+   PERIOD SYSTEM FIXED
 ========================= */
 
 /*
-এখানে current official period দাও
+REAL BASE DATA
+1:22:00 AM = 20260512100052324
+EVERY 30 SEC +1
 */
 
-let basePeriod =
-20260512100052251;
+const basePeriod = 20260512100052324;
 
-/*
-Current real time
-*/
+const baseDate = new Date(2026,4,12,1,22,0);
 
-let baseTime =
-new Date().getTime();
-
-let lastPeriod = -1;
+let lastPeriod = "";
 
 /* =========================
    SIGNAL SYSTEM
@@ -304,11 +290,6 @@ Math.random()<0.5 ? "BIG":"SMALL";
 
 let number;
 
-/*
-BIG = 0-4
-SMALL = 5-9
-*/
-
 if(signal==="BIG"){
 
 number =
@@ -320,8 +301,6 @@ number =
 Math.floor(Math.random()*5)+5;
 
 }
-
-/* COLOR */
 
 let color="";
 
@@ -371,8 +350,6 @@ item.innerHTML =
 
 history.prepend(item);
 
-/* MAX 10 */
-
 if(history.children.length>10){
 
 history.removeChild(history.lastChild);
@@ -382,65 +359,54 @@ history.removeChild(history.lastChild);
 }
 
 /* =========================
-   REAL TIMER
+   LIVE UPDATE SYSTEM
 ========================= */
 
 function updateSystem(){
 
-let now =
-new Date().getTime();
+const now = new Date();
 
-/* PASSED TIME */
+/* TIME DIFFERENCE */
 
-let passed =
-Math.floor((now-baseTime)/1000);
+const diffMs = now - baseDate;
 
 /* EVERY 30 SEC */
 
-let extra =
-Math.floor(passed/30);
+const periodIncrease = Math.floor(diffMs / 30000);
 
-let currentPeriod =
-basePeriod + extra;
+const currentPeriod = basePeriod + periodIncrease;
 
 /* TIMER */
 
-let remain =
-30 - (passed % 30);
+const seconds = now.getSeconds();
 
-if(remain===30){
+let remain = 30 - (seconds % 30);
 
-remain=0;
-
+if(remain === 30){
+remain = 0;
 }
 
-if(remain<10){
-
-remain="0"+remain;
-
-}
+let showTime = remain < 10 ? "0"+remain : remain;
 
 /* SHOW */
 
 document.getElementById("timer").innerText =
-"00:"+remain;
+"00:" + showTime;
 
 document.getElementById("period").innerText =
 currentPeriod;
 
 /* NEW SIGNAL */
 
-if(currentPeriod!==lastPeriod){
+if(lastPeriod != currentPeriod){
 
-lastPeriod=currentPeriod;
+lastPeriod = currentPeriod;
 
 generateSignal(currentPeriod);
 
 }
 
 }
-
-/* START */
 
 setInterval(updateSystem,1000);
 
