@@ -36,21 +36,28 @@ alert("Wrong Username or Password");
 
 /*
 
-SYNC DATA:
+LATEST SYNC:
 
-1:46:41 AM
+1:56:00 AM
 =
-20260512100052375
+20260512100052392
+
+EVERY 30 SEC = +1
+
+SAFE VERSION
+NO BIGINT
+NO WHITE SCREEN
 
 */
 
-const basePeriod =
-20260512100052375;
+/* PERIOD START */
 
-/* EXACT BASE TIME */
+const basePeriod = 52392;
+
+/* EXACT START TIME */
 
 const baseTime =
-new Date(2025,4,12,1,46,41).getTime();
+new Date(2025,4,12,1,56,0).getTime();
 
 /* LAST PERIOD */
 
@@ -149,7 +156,7 @@ function updateSystem(){
 const now =
 Date.now();
 
-/* DIFFERENCE */
+/* TIME DIFFERENCE */
 
 const diff =
 now - baseTime;
@@ -159,17 +166,26 @@ now - baseTime;
 const passedPeriods =
 Math.floor(diff / 30000);
 
-/* CURRENT PERIOD */
+/* =========================
+   CURRENT PERIOD
+========================= */
 
 const currentPeriod =
-basePeriod + passedPeriods;
+"202605121000" +
+(basePeriod + passedPeriods);
 
 /* =========================
    REAL TIMER
 ========================= */
 
-const remain =
+let remain =
 30 - Math.floor((diff % 30000) / 1000);
+
+if(remain === 30){
+
+remain = 0;
+
+}
 
 /* FORMAT */
 
