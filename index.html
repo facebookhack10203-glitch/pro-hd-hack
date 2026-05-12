@@ -43,7 +43,7 @@ box-shadow:0 0 25px #00ff99;
 
 .logo{
 text-align:center;
-font-size:40px;
+font-size:42px;
 font-weight:bold;
 color:#00ff99;
 margin-bottom:30px;
@@ -111,31 +111,32 @@ margin-bottom:20px;
 }
 
 .timer{
-font-size:65px;
+font-size:70px;
 font-weight:bold;
 color:#00ff99;
 margin-bottom:20px;
+text-shadow:0 0 15px #00ff99;
 }
 
 .signal-title{
-font-size:26px;
+font-size:28px;
 margin-bottom:15px;
 }
 
 .bigsmall{
-font-size:65px;
+font-size:70px;
 font-weight:bold;
 margin:15px 0;
 }
 
 .number{
-font-size:90px;
+font-size:95px;
 font-weight:bold;
 margin:10px 0;
 }
 
 .color{
-font-size:40px;
+font-size:42px;
 font-weight:bold;
 margin-top:10px;
 }
@@ -256,7 +257,7 @@ document.getElementById("username").value;
 let pass =
 document.getElementById("password").value;
 
-if(user === "admin" && pass === "1234"){
+if(user==="admin" && pass==="1234"){
 
 document.getElementById("loginPage").style.display =
 "none";
@@ -264,8 +265,7 @@ document.getElementById("loginPage").style.display =
 document.getElementById("mainPage").style.display =
 "block";
 
-}
-else{
+}else{
 
 alert("Wrong Username or Password");
 
@@ -273,52 +273,78 @@ alert("Wrong Username or Password");
 
 }
 
-/* PERIOD */
+/* =========================
+   PERIOD SYNC SYSTEM
+========================= */
 
-let currentPeriod =
+let basePeriod =
 20260512100052251;
 
-let lastRound = -1;
+/*
+12:45:00 AM synced period
+*/
 
-/* SIGNAL */
+let baseTime =
+new Date(
+2025,
+4,
+12,
+0,
+45,
+0
+).getTime();
 
-function generateSignal(){
+let lastPeriod = 0;
+
+/* =========================
+   SIGNAL SYSTEM
+========================= */
+
+function generateSignal(period){
 
 let signal =
-Math.random() < 0.5 ? "BIG" : "SMALL";
+Math.random()<0.5 ? "BIG":"SMALL";
 
 let number;
 
-if(signal === "BIG"){
+/*
+BIG = 0-4
+SMALL = 5-9
+*/
+
+if(signal==="BIG"){
 
 number =
 Math.floor(Math.random()*5);
 
-}
-else{
+}else{
 
 number =
 Math.floor(Math.random()*5)+5;
 
 }
 
-let color = "";
+/* COLOR */
+
+let color="";
 
 if([1,3,7,9].includes(number)){
 
-color = "GREEN";
+color="GREEN";
 
 }
 else if([2,4,6,8].includes(number)){
 
-color = "RED";
+color="RED";
 
 }
 else{
 
-color = "VIOLET";
+color="VIOLET";
 
 }
+
+/* SHOW */
 
 document.getElementById("signal").innerText =
 signal;
@@ -341,16 +367,16 @@ item.className =
 "history-item";
 
 item.innerHTML =
-"🎯 " + signal +
-" | 🔢 " + number +
-" | 🎨 " + color +
-" | 🆔 " + currentPeriod;
+"🎯 "+signal+
+" | 🔢 "+number+
+" | 🎨 "+color+
+" | 🆔 "+period;
 
 history.prepend(item);
 
 /* MAX 10 */
 
-if(history.children.length > 10){
+if(history.children.length>10){
 
 history.removeChild(history.lastChild);
 
@@ -358,69 +384,72 @@ history.removeChild(history.lastChild);
 
 }
 
-/* REAL TIMER */
+/* =========================
+   REAL TIMER SYSTEM
+========================= */
 
-function updateRealTimer(){
+function updateSystem(){
 
 let now =
-new Date();
+new Date().getTime();
 
-let sec =
-now.getSeconds();
+/* PASSED SECONDS */
 
-/*
-30 second system
-*/
+let passed =
+Math.floor((now-baseTime)/1000);
+
+/* EVERY 30 SEC NEW PERIOD */
+
+let extra =
+Math.floor(passed/30);
+
+let currentPeriod =
+basePeriod + extra;
+
+/* TIMER */
 
 let remain =
-30 - (sec % 30);
+30 - (Math.floor(passed)%30);
 
-if(remain === 30){
+if(remain===30){
 
-remain = 30;
+remain=30;
+
+}
+
+if(remain<10){
+
+remain="0"+remain;
 
 }
 
-if(remain < 10){
-
-remain = "0" + remain;
-
-}
+/* SHOW TIMER */
 
 document.getElementById("timer").innerText =
-"00:" + remain;
+"00:"+remain;
 
-/*
-new round
-*/
-
-let currentRound =
-Math.floor(sec / 30);
-
-if(currentRound !== lastRound){
-
-lastRound = currentRound;
-
-if(sec === 0 || sec === 30){
-
-currentPeriod++;
+/* SHOW PERIOD */
 
 document.getElementById("period").innerText =
 currentPeriod;
 
-generateSignal();
+/* NEW SIGNAL */
+
+if(currentPeriod!==lastPeriod){
+
+lastPeriod=currentPeriod;
+
+generateSignal(currentPeriod);
 
 }
 
 }
 
-}
+/* START */
 
-setInterval(updateRealTimer,1000);
+setInterval(updateSystem,1000);
 
-updateRealTimer();
-
-generateSignal();
+updateSystem();
 
 </script>
 
