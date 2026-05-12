@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html><html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>PRO HD HACK</title>
-
-<style>
+<title>PRO HD HACK</title><style>
 
 *{
 margin:0;
@@ -20,11 +13,11 @@ font-family:Arial,sans-serif;
 
 body{
 background:#000;
-color:white;
+color:#fff;
 overflow-x:hidden;
 }
 
-/* LOGIN */
+/* LOGIN PAGE */
 
 #loginPage{
 width:100%;
@@ -80,7 +73,7 @@ font-weight:bold;
 cursor:pointer;
 }
 
-/* MAIN */
+/* MAIN PAGE */
 
 #mainPage{
 display:none;
@@ -107,7 +100,7 @@ color:#aaa;
 }
 
 .period{
-font-size:30px;
+font-size:28px;
 font-weight:bold;
 color:#00ff99;
 word-break:break-all;
@@ -156,7 +149,7 @@ background:#161616;
 padding:15px;
 border-radius:15px;
 margin-top:12px;
-font-size:22px;
+font-size:20px;
 word-break:break-all;
 }
 
@@ -167,94 +160,36 @@ margin-top:20px;
 font-size:18px;
 }
 
-</style>
-
-</head>
-
-<body>
-
-<!-- LOGIN PAGE -->
-
-<div id="loginPage">
-
-<div class="login-box">
-
-<div class="logo">
+</style></head>
+<body><!-- LOGIN PAGE --><div id="loginPage"><div class="login-box"><div class="logo">
 PRO HD HACK
-</div>
-
-<input type="text" id="username" placeholder="Username">
-
-<input type="password" id="password" placeholder="Password">
-
-<button onclick="login()">
+</div><input type="text" id="username" placeholder="Username"><input type="password" id="password" placeholder="Password"><button onclick="login()">
 LOGIN
-</button>
-
-</div>
-
-</div>
-
-<!-- MAIN PAGE -->
-
-<div id="mainPage">
-
-<div class="logo">
+</button></div>
+</div><!-- MAIN PAGE --><div id="mainPage"><div class="logo">
 PRO HD HACK
-</div>
-
-<div class="card center">
-
-<div class="period-title">
+</div><div class="card center"><div class="period-title">
 CURRENT PERIOD
-</div>
-
-<div class="period" id="period">
+</div><div class="period" id="period">
 Loading...
-</div>
-
-<div class="timer" id="timer">
+</div><div class="timer" id="timer">
 00:30
-</div>
-
-<div class="signal-title">
+</div><div class="signal-title">
 NEXT SIGNAL
-</div>
-
-<div class="bigsmall" id="signal">
+</div><div class="bigsmall" id="signal">
 BIG
-</div>
-
-<div class="number" id="number">
+</div><div class="number" id="number">
 0
-</div>
-
-<div class="color" id="color">
+</div><div class="color" id="color">
 VIOLET
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="history-title">
+</div></div><div class="card"><div class="history-title">
 LIVE HISTORY
-</div>
-
-<div id="history"></div>
-
-</div>
-
-<div class="footer">
+</div><div id="history"></div></div><div class="footer">
 PRO HD HACK VIP SERVER
-</div>
-
-</div>
-
-<script>
+</div></div><script>
 
 /* =========================
-LOGIN SYSTEM
+   LOGIN SYSTEM
 ========================= */
 
 function login(){
@@ -265,13 +200,11 @@ document.getElementById("username").value;
 let pass =
 document.getElementById("password").value;
 
-if(user==="admin" && pass==="1234"){
+if(user === "admin" && pass === "1234"){
 
-document.getElementById("loginPage").style.display =
-"none";
+document.getElementById("loginPage").style.display = "none";
 
-document.getElementById("mainPage").style.display =
-"block";
+document.getElementById("mainPage").style.display = "block";
 
 startSystem();
 
@@ -284,12 +217,16 @@ alert("Wrong Username or Password");
 }
 
 /* =========================
-SYNC DATA
-1:56:00 AM
-=
-20260512100052392
+   SAFE PERIOD SYSTEM
 ========================= */
 
+/*
+SYNC:
+1:56:00 AM
+20260512100052392
+*/
+
+const periodPrefix = "202605121000";
 const basePeriod = 52392;
 
 const baseTime =
@@ -298,7 +235,7 @@ new Date(2025,4,12,1,56,0).getTime();
 let lastPeriod = "";
 
 /* =========================
-SIGNAL SYSTEM
+   SIGNAL SYSTEM
 ========================= */
 
 function generateSignal(period){
@@ -310,13 +247,11 @@ let number;
 
 if(signal === "BIG"){
 
-number =
-Math.floor(Math.random()*5);
+number = Math.floor(Math.random()*5);
 
 }else{
 
-number =
-Math.floor(Math.random()*5)+5;
+number = Math.floor(Math.random()*5)+5;
 
 }
 
@@ -326,21 +261,17 @@ if([1,3,7,9].includes(number)){
 
 color = "GREEN";
 
-}
-else if([2,4,6,8].includes(number)){
+}else if([2,4,6,8].includes(number)){
 
 color = "RED";
 
 }
 
-document.getElementById("signal").innerText =
-signal;
+/* SHOW */
 
-document.getElementById("number").innerText =
-number;
-
-document.getElementById("color").innerText =
-color;
+document.getElementById("signal").innerText = signal;
+document.getElementById("number").innerText = number;
+document.getElementById("color").innerText = color;
 
 /* HISTORY */
 
@@ -350,11 +281,9 @@ document.getElementById("history");
 let item =
 document.createElement("div");
 
-item.className =
-"history-item";
+item.className = "history-item";
 
 item.innerHTML =
-
 "🎯 " + signal +
 " | 🔢 " + number +
 " | 🎨 " + color +
@@ -371,27 +300,24 @@ history.removeChild(history.lastChild);
 }
 
 /* =========================
-MAIN SYSTEM
+   LIVE SYSTEM
 ========================= */
 
 function updateSystem(){
 
-let now =
-Date.now();
+const now = Date.now();
 
-let diff =
-now - baseTime;
+const diff = now - baseTime;
 
 /* EVERY 30 SEC */
 
-let passedPeriods =
+const passedPeriods =
 Math.floor(diff / 30000);
 
-/* CURRENT PERIOD */
+/* PERIOD */
 
-let currentPeriod =
-"202605121000" +
-(basePeriod + passedPeriods);
+const currentPeriod =
+periodPrefix + (basePeriod + passedPeriods);
 
 /* TIMER */
 
@@ -399,13 +325,11 @@ let remain =
 30 - Math.floor((diff % 30000) / 1000);
 
 if(remain === 30){
-
 remain = 0;
-
 }
 
 let showRemain =
-remain < 10 ? "0"+remain : remain;
+remain < 10 ? "0" + remain : remain;
 
 /* SHOW */
 
@@ -417,10 +341,9 @@ currentPeriod;
 
 /* NEW SIGNAL */
 
-if(lastPeriod != currentPeriod){
+if(lastPeriod !== currentPeriod){
 
-lastPeriod =
-currentPeriod;
+lastPeriod = currentPeriod;
 
 generateSignal(currentPeriod);
 
@@ -429,7 +352,7 @@ generateSignal(currentPeriod);
 }
 
 /* =========================
-START SYSTEM
+   START SYSTEM
 ========================= */
 
 function startSystem(){
@@ -440,7 +363,5 @@ setInterval(updateSystem,1000);
 
 }
 
-</script>
-
-</body>
+</script></body>
 </html>
