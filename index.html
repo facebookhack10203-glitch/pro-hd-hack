@@ -1,8 +1,6 @@
 <script>
 
-/* =========================
-   LOGIN SYSTEM
-========================= */
+/* LOGIN */
 
 function login(){
 
@@ -36,22 +34,22 @@ alert("Wrong Username or Password");
 
 /*
 
-CONFIRMED SYNC:
-
 1:56:00 AM
 =
 20260512100052392
 
-EVERY 30 SEC = +1 PERIOD
+EVERY 30 SEC +1
 
 */
 
-const basePeriod =
-BigInt("20260512100052392");
+/* BASE PERIOD */
 
-/* EXACT ROUND START TIME */
+let basePeriod =
+20260512100052392;
 
-const baseTime =
+/* BASE TIME */
+
+let baseTime =
 new Date(2025,4,12,1,56,0).getTime();
 
 /* LAST PERIOD */
@@ -69,9 +67,6 @@ Math.random() < 0.5 ? "BIG" : "SMALL";
 
 let number;
 
-/* BIG = 0-4 */
-/* SMALL = 5-9 */
-
 if(signal === "BIG"){
 
 number =
@@ -83,8 +78,6 @@ number =
 Math.floor(Math.random()*5)+5;
 
 }
-
-/* COLOR */
 
 let color = "VIOLET";
 
@@ -98,8 +91,6 @@ else if([2,4,6,8].includes(number)){
 color = "RED";
 
 }
-
-/* SHOW */
 
 document.getElementById("signal").innerText =
 signal;
@@ -130,8 +121,6 @@ item.innerHTML =
 
 history.prepend(item);
 
-/* MAX HISTORY */
-
 if(history.children.length > 10){
 
 history.removeChild(history.lastChild);
@@ -141,39 +130,28 @@ history.removeChild(history.lastChild);
 }
 
 /* =========================
-   MAIN LIVE SYSTEM
+   MAIN SYSTEM
 ========================= */
 
 function updateSystem(){
 
-/* CURRENT TIME */
-
-const now =
+let now =
 Date.now();
 
-/* DIFFERENCE */
-
-const diff =
+let diff =
 now - baseTime;
 
-/* EVERY 30 SEC = +1 */
+/* EVERY 30 SEC */
 
-const passedPeriods =
+let passedPeriods =
 Math.floor(diff / 30000);
 
-/* =========================
-   CURRENT PERIOD
-========================= */
+/* CURRENT PERIOD */
 
-const currentPeriod =
-(
-basePeriod +
-BigInt(passedPeriods)
-).toString();
+let currentPeriod =
+(basePeriod + passedPeriods).toString();
 
-/* =========================
-   REAL TIMER
-========================= */
+/* TIMER */
 
 let remain =
 30 - Math.floor((diff % 30000) / 1000);
@@ -183,8 +161,6 @@ if(remain === 30){
 remain = 0;
 
 }
-
-/* FORMAT */
 
 let showRemain =
 remain < 10 ? "0"+remain : remain;
@@ -197,9 +173,7 @@ document.getElementById("timer").innerText =
 document.getElementById("period").innerText =
 currentPeriod;
 
-/* =========================
-   NEW SIGNAL
-========================= */
+/* NEW SIGNAL */
 
 if(lastPeriod != currentPeriod){
 
@@ -212,9 +186,7 @@ generateSignal(currentPeriod);
 
 }
 
-/* =========================
-   START SYSTEM
-========================= */
+/* START */
 
 function startSystem(){
 
