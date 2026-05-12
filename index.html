@@ -274,27 +274,24 @@ alert("Wrong Username or Password");
 }
 
 /* =========================
-   PERIOD SYNC SYSTEM
+   LIVE PERIOD SYSTEM
 ========================= */
+
+/*
+এখানে current official period দাও
+*/
 
 let basePeriod =
 20260512100052251;
 
 /*
-12:45:00 AM synced period
+Current real time
 */
 
 let baseTime =
-new Date(
-2025,
-4,
-12,
-0,
-45,
-0
-).getTime();
+new Date().getTime();
 
-let lastPeriod = 0;
+let lastPeriod = -1;
 
 /* =========================
    SIGNAL SYSTEM
@@ -385,7 +382,7 @@ history.removeChild(history.lastChild);
 }
 
 /* =========================
-   REAL TIMER SYSTEM
+   REAL TIMER
 ========================= */
 
 function updateSystem(){
@@ -393,12 +390,12 @@ function updateSystem(){
 let now =
 new Date().getTime();
 
-/* PASSED SECONDS */
+/* PASSED TIME */
 
 let passed =
 Math.floor((now-baseTime)/1000);
 
-/* EVERY 30 SEC NEW PERIOD */
+/* EVERY 30 SEC */
 
 let extra =
 Math.floor(passed/30);
@@ -409,11 +406,11 @@ basePeriod + extra;
 /* TIMER */
 
 let remain =
-30 - (Math.floor(passed)%30);
+30 - (passed % 30);
 
 if(remain===30){
 
-remain=30;
+remain=0;
 
 }
 
@@ -423,12 +420,10 @@ remain="0"+remain;
 
 }
 
-/* SHOW TIMER */
+/* SHOW */
 
 document.getElementById("timer").innerText =
 "00:"+remain;
-
-/* SHOW PERIOD */
 
 document.getElementById("period").innerText =
 currentPeriod;
