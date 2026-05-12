@@ -36,25 +36,23 @@ alert("Wrong Username or Password");
 
 /*
 
-SYNC DATA:
+CONFIRMED SYNC:
 
-1:46:41 AM
+1:56:00 AM
 =
-20260512100052375
+20260512100052392
 
-IMPORTANT:
-USE BIGINT
-TO PREVENT WRONG PERIOD
+EVERY 30 SEC = +1 PERIOD
 
 */
 
 const basePeriod =
-BigInt("20260512100052375");
+BigInt("20260512100052392");
 
-/* EXACT BASE TIME */
+/* EXACT ROUND START TIME */
 
 const baseTime =
-new Date(2025,4,12,1,46,41).getTime();
+new Date(2025,4,12,1,56,0).getTime();
 
 /* LAST PERIOD */
 
@@ -166,13 +164,6 @@ Math.floor(diff / 30000);
 /* =========================
    CURRENT PERIOD
 ========================= */
-
-/*
-
-BIGINT FIX
-NO WRONG DIGITS
-
-*/
 
 const currentPeriod =
 (
