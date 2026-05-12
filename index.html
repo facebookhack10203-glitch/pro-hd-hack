@@ -1,8 +1,14 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PRO HD HACK</title><style>
+
+<title>PRO HD HACK</title>
+
+<style>
 
 *{
 margin:0;
@@ -17,7 +23,7 @@ color:#fff;
 overflow-x:hidden;
 }
 
-/* LOGIN PAGE */
+/* LOGIN */
 
 #loginPage{
 width:100%;
@@ -73,7 +79,7 @@ font-weight:bold;
 cursor:pointer;
 }
 
-/* MAIN PAGE */
+/* MAIN */
 
 #mainPage{
 display:none;
@@ -160,36 +166,94 @@ margin-top:20px;
 font-size:18px;
 }
 
-</style></head>
-<body><!-- LOGIN PAGE --><div id="loginPage"><div class="login-box"><div class="logo">
+</style>
+
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+
+<div id="loginPage">
+
+<div class="login-box">
+
+<div class="logo">
 PRO HD HACK
-</div><input type="text" id="username" placeholder="Username"><input type="password" id="password" placeholder="Password"><button onclick="login()">
+</div>
+
+<input type="text" id="username" placeholder="Username">
+
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">
 LOGIN
-</button></div>
-</div><!-- MAIN PAGE --><div id="mainPage"><div class="logo">
+</button>
+
+</div>
+
+</div>
+
+<!-- MAIN PAGE -->
+
+<div id="mainPage">
+
+<div class="logo">
 PRO HD HACK
-</div><div class="card center"><div class="period-title">
+</div>
+
+<div class="card center">
+
+<div class="period-title">
 CURRENT PERIOD
-</div><div class="period" id="period">
+</div>
+
+<div class="period" id="period">
 Loading...
-</div><div class="timer" id="timer">
+</div>
+
+<div class="timer" id="timer">
 00:30
-</div><div class="signal-title">
+</div>
+
+<div class="signal-title">
 NEXT SIGNAL
-</div><div class="bigsmall" id="signal">
+</div>
+
+<div class="bigsmall" id="signal">
 BIG
-</div><div class="number" id="number">
+</div>
+
+<div class="number" id="number">
 0
-</div><div class="color" id="color">
+</div>
+
+<div class="color" id="color">
 VIOLET
-</div></div><div class="card"><div class="history-title">
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="history-title">
 LIVE HISTORY
-</div><div id="history"></div></div><div class="footer">
+</div>
+
+<div id="history"></div>
+
+</div>
+
+<div class="footer">
 PRO HD HACK VIP SERVER
-</div></div><script>
+</div>
+
+</div>
+
+<script>
 
 /* =========================
-   LOGIN SYSTEM
+LOGIN SYSTEM
 ========================= */
 
 function login(){
@@ -202,9 +266,11 @@ document.getElementById("password").value;
 
 if(user === "admin" && pass === "1234"){
 
-document.getElementById("loginPage").style.display = "none";
+document.getElementById("loginPage").style.display =
+"none";
 
-document.getElementById("mainPage").style.display = "block";
+document.getElementById("mainPage").style.display =
+"block";
 
 startSystem();
 
@@ -217,25 +283,38 @@ alert("Wrong Username or Password");
 }
 
 /* =========================
-   SAFE PERIOD SYSTEM
+EXACT BDWIN24 SYNC
 ========================= */
 
 /*
-SYNC:
+
+CONFIRMED:
+
 1:56:00 AM
+=
 20260512100052392
+
+EVERY 30 SEC = +1
+
 */
 
-const periodPrefix = "202605121000";
-const basePeriod = 52392;
+const periodPrefix =
+"202605121000";
+
+const basePeriod =
+52392;
+
+/* EXACT START TIME */
 
 const baseTime =
-new Date(2025,4,12,1,56,0).getTime();
+new Date(2025,4,12,1,56,0,0).getTime();
+
+/* LAST PERIOD */
 
 let lastPeriod = "";
 
 /* =========================
-   SIGNAL SYSTEM
+SIGNAL SYSTEM
 ========================= */
 
 function generateSignal(period){
@@ -247,11 +326,13 @@ let number;
 
 if(signal === "BIG"){
 
-number = Math.floor(Math.random()*5);
+number =
+Math.floor(Math.random()*5);
 
 }else{
 
-number = Math.floor(Math.random()*5)+5;
+number =
+Math.floor(Math.random()*5)+5;
 
 }
 
@@ -261,7 +342,8 @@ if([1,3,7,9].includes(number)){
 
 color = "GREEN";
 
-}else if([2,4,6,8].includes(number)){
+}
+else if([2,4,6,8].includes(number)){
 
 color = "RED";
 
@@ -269,9 +351,14 @@ color = "RED";
 
 /* SHOW */
 
-document.getElementById("signal").innerText = signal;
-document.getElementById("number").innerText = number;
-document.getElementById("color").innerText = color;
+document.getElementById("signal").innerText =
+signal;
+
+document.getElementById("number").innerText =
+number;
+
+document.getElementById("color").innerText =
+color;
 
 /* HISTORY */
 
@@ -281,9 +368,11 @@ document.getElementById("history");
 let item =
 document.createElement("div");
 
-item.className = "history-item";
+item.className =
+"history-item";
 
 item.innerHTML =
+
 "🎯 " + signal +
 " | 🔢 " + number +
 " | 🎨 " + color +
@@ -300,33 +389,40 @@ history.removeChild(history.lastChild);
 }
 
 /* =========================
-   LIVE SYSTEM
+LIVE SYSTEM
 ========================= */
 
 function updateSystem(){
 
-const now = Date.now();
+const now =
+Date.now();
 
-const diff = now - baseTime;
+const diff =
+now - baseTime;
 
 /* EVERY 30 SEC */
 
 const passedPeriods =
 Math.floor(diff / 30000);
 
-/* PERIOD */
+/* CURRENT PERIOD */
 
 const currentPeriod =
-periodPrefix + (basePeriod + passedPeriods);
+periodPrefix +
+(basePeriod + passedPeriods);
 
 /* TIMER */
 
 let remain =
 30 - Math.floor((diff % 30000) / 1000);
 
-if(remain === 30){
-remain = 0;
+if(remain <= 0){
+
+remain = 30;
+
 }
+
+/* FORMAT */
 
 let showRemain =
 remain < 10 ? "0" + remain : remain;
@@ -343,7 +439,8 @@ currentPeriod;
 
 if(lastPeriod !== currentPeriod){
 
-lastPeriod = currentPeriod;
+lastPeriod =
+currentPeriod;
 
 generateSignal(currentPeriod);
 
@@ -352,7 +449,7 @@ generateSignal(currentPeriod);
 }
 
 /* =========================
-   START SYSTEM
+START SYSTEM
 ========================= */
 
 function startSystem(){
@@ -363,5 +460,7 @@ setInterval(updateSystem,1000);
 
 }
 
-</script></body>
+</script>
+
+</body>
 </html>
