@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -252,9 +253,7 @@ PRO HD HACK VIP SERVER
 
 <script>
 
-/* =========================
-LOGIN SYSTEM
-========================= */
+/* LOGIN SYSTEM */
 
 function login(){
 
@@ -272,8 +271,6 @@ document.getElementById("loginPage").style.display =
 document.getElementById("mainPage").style.display =
 "block";
 
-startSystem();
-
 }else{
 
 alert("Wrong Username or Password");
@@ -282,185 +279,11 @@ alert("Wrong Username or Password");
 
 }
 
-/* =========================
-EXACT BDWIN24 SYNC
-========================= */
-
-/*
-
-CONFIRMED:
-
-1:56:00 AM
-=
-20260512100052392
-
-EVERY 30 SEC = +1
-
-*/
-
-const periodPrefix =
-"202605121000";
-
-const basePeriod =
-52392;
-
-/* EXACT START TIME */
-
-const baseTime =
-new Date(2025,4,12,1,56,0,0).getTime();
-
-/* LAST PERIOD */
-
-let lastPeriod = "";
-
-/* =========================
-SIGNAL SYSTEM
-========================= */
-
-function generateSignal(period){
-
-let signal =
-Math.random() < 0.5 ? "BIG" : "SMALL";
-
-let number;
-
-if(signal === "BIG"){
-
-number =
-Math.floor(Math.random()*5);
-
-}else{
-
-number =
-Math.floor(Math.random()*5)+5;
-
-}
-
-let color = "VIOLET";
-
-if([1,3,7,9].includes(number)){
-
-color = "GREEN";
-
-}
-else if([2,4,6,8].includes(number)){
-
-color = "RED";
-
-}
-
-/* SHOW */
-
-document.getElementById("signal").innerText =
-signal;
-
-document.getElementById("number").innerText =
-number;
-
-document.getElementById("color").innerText =
-color;
-
-/* HISTORY */
-
-let history =
-document.getElementById("history");
-
-let item =
-document.createElement("div");
-
-item.className =
-"history-item";
-
-item.innerHTML =
-
-"🎯 " + signal +
-" | 🔢 " + number +
-" | 🎨 " + color +
-" | 🆔 " + period;
-
-history.prepend(item);
-
-if(history.children.length > 10){
-
-history.removeChild(history.lastChild);
-
-}
-
-}
-
-/* =========================
-LIVE SYSTEM
-========================= */
-
-function updateSystem(){
-
-const now =
-Date.now();
-
-const diff =
-now - baseTime;
-
-/* EVERY 30 SEC */
-
-const passedPeriods =
-Math.floor(diff / 30000);
-
-/* CURRENT PERIOD */
-
-const currentPeriod =
-periodPrefix +
-(basePeriod + passedPeriods);
-
-/* TIMER */
-
-let remain =
-30 - Math.floor((diff % 30000) / 1000);
-
-if(remain <= 0){
-
-remain = 30;
-
-}
-
-/* FORMAT */
-
-let showRemain =
-remain < 10 ? "0" + remain : remain;
-
-/* SHOW */
-
-document.getElementById("timer").innerText =
-"00:" + showRemain;
-
-document.getElementById("period").innerText =
-currentPeriod;
-
-/* NEW SIGNAL */
-
-if(lastPeriod !== currentPeriod){
-
-lastPeriod =
-currentPeriod;
-
-generateSignal(currentPeriod);
-
-}
-
-}
-
-/* =========================
-START SYSTEM
-========================= */
-
-function startSystem(){
-
-updateSystem();
-
-setInterval(updateSystem,1000);
-
-}
-
 </script>
+
+<!-- PERIOD SYSTEM FILE -->
+
+<script src="period.js"></script>
 
 </body>
 </html>
