@@ -4,7 +4,7 @@
 
 /*
 
-SYNC EXAMPLE
+SYNC CONFIRMED
 
 9:27:00 AM
 =
@@ -18,21 +18,34 @@ SYNC EXAMPLE
 =
 20260513100050417
 
+9:49:00 AM
+=
+20260513100050458
+
 EVERY 30 SEC = +1
 
 */
 
 /* =========================
-   BASE DATA
+   BASE PERIOD
 ========================= */
 
-const periodPrefix =
-"202605131000";
-
 const basePeriod =
-50415;
+BigInt("20260513100050415");
 
-/* EXACT START TIME */
+/* =========================
+   EXACT START TIME
+========================= */
+
+/*
+
+MONTH = 4
+MAY = 4
+
+FORMAT:
+(year,month,date,hour,min,sec)
+
+*/
 
 const baseTime =
 new Date(2025,4,13,9,27,0,0).getTime();
@@ -64,6 +77,8 @@ Math.floor(Math.random()*5)+5;
 
 }
 
+/* COLOR */
+
 let color = "VIOLET";
 
 if([1,3,7,9].includes(number)){
@@ -88,7 +103,9 @@ number;
 document.getElementById("color").innerText =
 color;
 
-/* HISTORY */
+/* =========================
+   HISTORY
+========================= */
 
 let history =
 document.getElementById("history");
@@ -124,29 +141,41 @@ history.removeChild(history.lastChild);
 
 function updateSystem(){
 
+/* CURRENT TIME */
+
 const now =
 Date.now();
+
+/* DIFFERENCE */
 
 const diff =
 now - baseTime;
 
-/* EVERY 30 SEC */
+/* =========================
+   EVERY 30 SEC = +1
+========================= */
 
 const passedPeriods =
 Math.floor(diff / 30000);
 
-/* CURRENT PERIOD */
+/* =========================
+   CURRENT PERIOD
+========================= */
 
 const currentPeriod =
-periodPrefix +
-(basePeriod + passedPeriods);
+(
+basePeriod +
+BigInt(passedPeriods)
+).toString();
 
 /* =========================
-   TIMER
+   REAL TIMER
 ========================= */
 
 let remain =
 30 - Math.floor((diff % 30000) / 1000);
+
+/* FIX */
 
 if(remain <= 0){
 
@@ -154,10 +183,16 @@ remain = 30;
 
 }
 
-let showRemain =
-remain < 10 ? "0" + remain : remain;
+/* FORMAT */
 
-/* SHOW */
+let showRemain =
+remain < 10
+? "0" + remain
+: remain;
+
+/* =========================
+   SHOW
+========================= */
 
 document.getElementById("timer").innerText =
 "00:" + showRemain;
@@ -165,7 +200,9 @@ document.getElementById("timer").innerText =
 document.getElementById("period").innerText =
 currentPeriod;
 
-/* NEW SIGNAL */
+/* =========================
+   NEW SIGNAL
+========================= */
 
 if(lastPeriod !== currentPeriod){
 
@@ -179,7 +216,7 @@ generateSignal(currentPeriod);
 }
 
 /* =========================
-   START
+   START SYSTEM
 ========================= */
 
 function startSystem(){
