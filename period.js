@@ -1,9 +1,13 @@
-const basePeriod = 680;
+const basePeriod = 480;
 
 const baseTime =
 new Date(2025,4,13,11,40,0,0).getTime();
 
 let lastPeriod = "";
+
+/* =========================
+   SIGNAL SYSTEM
+========================= */
 
 function generateSignal(period){
 
@@ -50,6 +54,10 @@ color;
 
 }
 
+/* =========================
+   MAIN SYSTEM
+========================= */
+
 function updateSystem(){
 
 const now =
@@ -58,11 +66,17 @@ Date.now();
 const diff =
 now - baseTime;
 
+/* EVERY 30 SEC */
+
 const passedPeriods =
 Math.floor(diff / 30000);
 
+/* CURRENT PERIOD */
+
 const currentPeriod =
 basePeriod + passedPeriods;
+
+/* TIMER */
 
 let remain =
 30 - Math.floor((diff % 30000) / 1000);
@@ -76,10 +90,12 @@ remain = 30;
 document.getElementById("timer").innerText =
 "00:" + (remain < 10 ? "0"+remain : remain);
 
-/* ONLY 3 DIGITS */
+/* ONLY LAST 3 DIGITS */
 
 document.getElementById("period").innerText =
 String(currentPeriod).slice(-3);
+
+/* NEW SIGNAL */
 
 if(lastPeriod != currentPeriod){
 
@@ -91,6 +107,10 @@ generateSignal(currentPeriod);
 }
 
 }
+
+/* =========================
+   START
+========================= */
 
 setInterval(updateSystem,1000);
 
