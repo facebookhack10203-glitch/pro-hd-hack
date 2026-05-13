@@ -1,14 +1,11 @@
 /* =========================
-   EXACT LAST 3 DIGIT SYSTEM
+   EXACT MATCH SYSTEM
 ========================= */
 
 /*
 
-CONFIRMED SYNC
-
-11:35:00 AM = 671
-11:35:30 AM = 672
-11:36:00 AM = 673
+11:40:00 AM = 680
+11:40:30 AM = 681
 
 EVERY 30 SEC = +1
 
@@ -16,24 +13,20 @@ ONLY LAST 3 DIGITS SHOW
 
 */
 
-/* =========================
-   BASE DATA
-========================= */
+/* BASE PERIOD */
 
-const basePeriod = 671;
+const basePeriod = 680;
 
-/* YEAR, MONTH(0-11), DATE, HOUR, MINUTE, SECOND */
+/* BASE TIME */
 
 const baseTime =
-new Date(2025,4,13,11,35,0,0).getTime();
+new Date(2025,4,13,11,40,0,0).getTime();
 
 /* LAST PERIOD */
 
 let lastPeriod = "";
 
-/* =========================
-   SIGNAL SYSTEM
-========================= */
+/* SIGNAL */
 
 function generateSignal(period){
 
@@ -56,8 +49,6 @@ Math.floor(Math.random()*5)+5;
 
 }
 
-/* COLOR */
-
 let color = "VIOLET";
 
 if([1,3,7,9].includes(number)){
@@ -71,8 +62,6 @@ color = "RED";
 
 }
 
-/* SHOW */
-
 document.getElementById("signal").innerText =
 signal;
 
@@ -82,9 +71,7 @@ number;
 document.getElementById("color").innerText =
 color;
 
-/* =========================
-   HISTORY
-========================= */
+/* HISTORY */
 
 let history =
 document.getElementById("history");
@@ -104,8 +91,6 @@ item.innerHTML =
 
 history.prepend(item);
 
-/* MAX 10 */
-
 if(history.children.length > 10){
 
 history.removeChild(history.lastChild);
@@ -114,9 +99,7 @@ history.removeChild(history.lastChild);
 
 }
 
-/* =========================
-   MAIN SYSTEM
-========================= */
+/* MAIN */
 
 function updateSystem(){
 
@@ -136,9 +119,7 @@ Math.floor(diff / 30000);
 const currentPeriod =
 basePeriod + passedPeriods;
 
-/* =========================
-   TIMER
-========================= */
+/* TIMER */
 
 let remain =
 30 - Math.floor((diff % 30000) / 1000);
@@ -151,24 +132,18 @@ remain = 30;
 
 let showRemain =
 remain < 10
-? "0" + remain
+? "0"+remain
 : remain;
 
-/* =========================
-   SHOW
-========================= */
+/* SHOW */
 
 document.getElementById("timer").innerText =
 "00:" + showRemain;
 
-/* ONLY LAST 3 DIGITS */
-
 document.getElementById("period").innerText =
 String(currentPeriod).slice(-3);
 
-/* =========================
-   NEW SIGNAL
-========================= */
+/* NEW SIGNAL */
 
 if(lastPeriod != currentPeriod){
 
@@ -181,9 +156,7 @@ generateSignal(currentPeriod);
 
 }
 
-/* =========================
-   START SYSTEM
-========================= */
+/* START */
 
 function startSystem(){
 
@@ -192,7 +165,5 @@ updateSystem();
 setInterval(updateSystem,1000);
 
 }
-
-/* AUTO START */
 
 startSystem();
