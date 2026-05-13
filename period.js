@@ -4,11 +4,12 @@
 
 /*
 
-FINAL EXACT SYNC
+SYNC FIXED
 
-9:49:00 AM
-=
-20260513100050458
+YOUR SITE WAS +500 AHEAD
+
+FIX:
+50458 -> 49958
 
 EVERY 30 SEC = +1
 
@@ -19,7 +20,7 @@ EVERY 30 SEC = +1
 ========================= */
 
 const basePeriod =
-BigInt("20260513100050458");
+BigInt("20260513100049958");
 
 /* =========================
    EXACT START TIME
@@ -81,7 +82,9 @@ number;
 document.getElementById("color").innerText =
 color;
 
-/* HISTORY */
+/* =========================
+   HISTORY
+========================= */
 
 let history =
 document.getElementById("history");
@@ -101,7 +104,7 @@ item.innerHTML =
 
 history.prepend(item);
 
-/* MAX HISTORY */
+/* MAX 10 */
 
 if(history.children.length > 10){
 
@@ -156,7 +159,9 @@ remain < 10
 ? "0" + remain
 : remain;
 
-/* SHOW */
+/* =========================
+   SHOW
+========================= */
 
 document.getElementById("timer").innerText =
 "00:" + showRemain;
@@ -164,7 +169,9 @@ document.getElementById("timer").innerText =
 document.getElementById("period").innerText =
 currentPeriod;
 
-/* NEW SIGNAL */
+/* =========================
+   NEW SIGNAL
+========================= */
 
 if(lastPeriod !== currentPeriod){
 
