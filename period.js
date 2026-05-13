@@ -1,14 +1,14 @@
 /* =========================
-   LAST 3 DIGIT PERIOD SYSTEM
+   EXACT LAST 3 DIGIT SYSTEM
 ========================= */
 
 /*
 
-SYNC:
+CONFIRMED SYNC
 
-11:25:00 AM = 651
-11:25:30 AM = 652
-11:26:00 AM = 653
+11:35:00 AM = 671
+11:35:30 AM = 672
+11:36:00 AM = 673
 
 EVERY 30 SEC = +1
 
@@ -20,12 +20,12 @@ ONLY LAST 3 DIGITS SHOW
    BASE DATA
 ========================= */
 
-const basePeriod = 651;
+const basePeriod = 671;
 
 /* YEAR, MONTH(0-11), DATE, HOUR, MINUTE, SECOND */
 
 const baseTime =
-new Date(2025,4,13,11,25,0,0).getTime();
+new Date(2025,4,13,11,35,0,0).getTime();
 
 /* LAST PERIOD */
 
@@ -56,6 +56,8 @@ Math.floor(Math.random()*5)+5;
 
 }
 
+/* COLOR */
+
 let color = "VIOLET";
 
 if([1,3,7,9].includes(number)){
@@ -80,7 +82,9 @@ number;
 document.getElementById("color").innerText =
 color;
 
-/* HISTORY */
+/* =========================
+   HISTORY
+========================= */
 
 let history =
 document.getElementById("history");
@@ -100,7 +104,7 @@ item.innerHTML =
 
 history.prepend(item);
 
-/* MAX HISTORY */
+/* MAX 10 */
 
 if(history.children.length > 10){
 
@@ -150,7 +154,9 @@ remain < 10
 ? "0" + remain
 : remain;
 
-/* SHOW */
+/* =========================
+   SHOW
+========================= */
 
 document.getElementById("timer").innerText =
 "00:" + showRemain;
@@ -160,7 +166,9 @@ document.getElementById("timer").innerText =
 document.getElementById("period").innerText =
 String(currentPeriod).slice(-3);
 
-/* NEW SIGNAL */
+/* =========================
+   NEW SIGNAL
+========================= */
 
 if(lastPeriod != currentPeriod){
 
