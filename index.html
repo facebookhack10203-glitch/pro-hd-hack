@@ -24,7 +24,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* LOGIN PAGE */
+/* LOGIN */
 
 #loginPage{
 width:100%;
@@ -80,7 +80,7 @@ font-weight:bold;
 cursor:pointer;
 }
 
-/* MAIN PAGE */
+/* MAIN */
 
 #mainPage{
 display:none;
@@ -142,6 +142,15 @@ margin:10px 0;
 font-size:42px;
 font-weight:bold;
 margin-top:10px;
+}
+
+/* CONFIDENCE */
+
+.confidence{
+font-size:28px;
+font-weight:bold;
+color:#00ff99;
+margin-top:15px;
 }
 
 .history-title{
@@ -209,7 +218,7 @@ CURRENT PERIOD
 </div>
 
 <div class="period" id="period">
-651
+481
 </div>
 
 <div class="timer" id="timer">
@@ -225,11 +234,17 @@ BIG
 </div>
 
 <div class="number" id="number">
-0
+8
 </div>
 
 <div class="color" id="color">
-VIOLET
+RED
+</div>
+
+<!-- CONFIDENCE -->
+
+<div class="confidence" id="confidence">
+80% CONFIDENCE
 </div>
 
 </div>
@@ -262,7 +277,7 @@ document.getElementById("username").value;
 let pass =
 document.getElementById("password").value;
 
-if(user === "admin" && pass === "1234"){
+if(user==="admin" && pass==="1234"){
 
 document.getElementById("loginPage").style.display =
 "none";
