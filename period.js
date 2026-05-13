@@ -1,4 +1,4 @@
-const basePeriod = 480;
+const basePeriod = 280;
 
 const baseTime =
 new Date(2025,4,13,11,40,0,0).getTime();
@@ -109,7 +109,7 @@ generateSignal(currentPeriod);
 }
 
 /* =========================
-   START
+   START SYSTEM
 ========================= */
 
 setInterval(updateSystem,1000);
