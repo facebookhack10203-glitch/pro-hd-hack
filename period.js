@@ -4,19 +4,7 @@
 
 /*
 
-SYNC CONFIRMED
-
-9:27:00 AM
-=
-20260513100050415
-
-9:27:30 AM
-=
-20260513100050416
-
-9:28:00 AM
-=
-20260513100050417
+FINAL EXACT SYNC
 
 9:49:00 AM
 =
@@ -31,24 +19,14 @@ EVERY 30 SEC = +1
 ========================= */
 
 const basePeriod =
-BigInt("20260513100050415");
+BigInt("20260513100050458");
 
 /* =========================
    EXACT START TIME
 ========================= */
 
-/*
-
-MONTH = 4
-MAY = 4
-
-FORMAT:
-(year,month,date,hour,min,sec)
-
-*/
-
 const baseTime =
-new Date(2025,4,13,9,27,0,0).getTime();
+new Date(2025,4,13,9,49,0,0).getTime();
 
 /* LAST PERIOD */
 
@@ -103,9 +81,7 @@ number;
 document.getElementById("color").innerText =
 color;
 
-/* =========================
-   HISTORY
-========================= */
+/* HISTORY */
 
 let history =
 document.getElementById("history");
@@ -125,7 +101,7 @@ item.innerHTML =
 
 history.prepend(item);
 
-/* MAX 10 */
+/* MAX HISTORY */
 
 if(history.children.length > 10){
 
@@ -141,26 +117,18 @@ history.removeChild(history.lastChild);
 
 function updateSystem(){
 
-/* CURRENT TIME */
-
 const now =
 Date.now();
-
-/* DIFFERENCE */
 
 const diff =
 now - baseTime;
 
-/* =========================
-   EVERY 30 SEC = +1
-========================= */
+/* EVERY 30 SEC */
 
 const passedPeriods =
 Math.floor(diff / 30000);
 
-/* =========================
-   CURRENT PERIOD
-========================= */
+/* CURRENT PERIOD */
 
 const currentPeriod =
 (
@@ -169,13 +137,11 @@ BigInt(passedPeriods)
 ).toString();
 
 /* =========================
-   REAL TIMER
+   TIMER
 ========================= */
 
 let remain =
 30 - Math.floor((diff % 30000) / 1000);
-
-/* FIX */
 
 if(remain <= 0){
 
@@ -190,9 +156,7 @@ remain < 10
 ? "0" + remain
 : remain;
 
-/* =========================
-   SHOW
-========================= */
+/* SHOW */
 
 document.getElementById("timer").innerText =
 "00:" + showRemain;
@@ -200,9 +164,7 @@ document.getElementById("timer").innerText =
 document.getElementById("period").innerText =
 currentPeriod;
 
-/* =========================
-   NEW SIGNAL
-========================= */
+/* NEW SIGNAL */
 
 if(lastPeriod !== currentPeriod){
 
