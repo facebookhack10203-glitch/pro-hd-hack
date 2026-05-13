@@ -4,13 +4,15 @@
 
 /*
 
-EXACT SYNC
+SYNC:
 
 11:25:00 AM = 651
 11:25:30 AM = 652
 11:26:00 AM = 653
 
 EVERY 30 SEC = +1
+
+ONLY LAST 3 DIGITS SHOW
 
 */
 
@@ -94,7 +96,7 @@ item.innerHTML =
 "🎯 " + signal +
 " | 🔢 " + number +
 " | 🎨 " + color +
-" | 🆔 " + period;
+" | 🆔 " + String(period).slice(-3);
 
 history.prepend(item);
 
@@ -153,8 +155,10 @@ remain < 10
 document.getElementById("timer").innerText =
 "00:" + showRemain;
 
+/* ONLY LAST 3 DIGITS */
+
 document.getElementById("period").innerText =
-currentPeriod;
+String(currentPeriod).slice(-3);
 
 /* NEW SIGNAL */
 
