@@ -1,7 +1,22 @@
+/* =========================
+   PRO HD HACK
+   PERIOD SYSTEM
+========================= */
+
+/* =========================
+   BASE PERIOD
+========================= */
+
 const basePeriod = 481;
+
+/* =========================
+   BASE TIME
+========================= */
 
 const baseTime =
 new Date(2025,4,13,11,40,0,0).getTime();
+
+/* LAST PERIOD */
 
 let lastPeriod = "";
 
@@ -18,17 +33,27 @@ Math.random() < 0.5
 
 let number;
 
+/* =========================
+   CORRECT SYSTEM
+   BIG = 5-9
+   SMALL = 0-4
+========================= */
+
 if(signal === "BIG"){
-
-number =
-Math.floor(Math.random()*5);
-
-}else{
 
 number =
 Math.floor(Math.random()*5)+5;
 
+}else{
+
+number =
+Math.floor(Math.random()*5);
+
 }
+
+/* =========================
+   COLOR SYSTEM
+========================= */
 
 let color = "VIOLET";
 
@@ -43,6 +68,10 @@ color = "RED";
 
 }
 
+/* =========================
+   SHOW SIGNAL
+========================= */
+
 document.getElementById("signal").innerText =
 signal;
 
@@ -51,6 +80,36 @@ number;
 
 document.getElementById("color").innerText =
 color;
+
+/* =========================
+   HISTORY
+========================= */
+
+let history =
+document.getElementById("history");
+
+let item =
+document.createElement("div");
+
+item.className =
+"history-item";
+
+item.innerHTML =
+
+"🎯 " + signal +
+" | 🔢 " + number +
+" | 🎨 " + color +
+" | 🆔 " + String(period).slice(-3);
+
+history.prepend(item);
+
+/* MAX 10 HISTORY */
+
+if(history.children.length > 10){
+
+history.removeChild(history.lastChild);
+
+}
 
 }
 
@@ -66,7 +125,9 @@ Date.now();
 const diff =
 now - baseTime;
 
-/* EVERY 30 SEC */
+/* =========================
+   EVERY 30 SEC
+========================= */
 
 const passedPeriods =
 Math.floor(diff / 30000);
@@ -76,7 +137,9 @@ Math.floor(diff / 30000);
 const currentPeriod =
 basePeriod + passedPeriods;
 
-/* TIMER */
+/* =========================
+   TIMER
+========================= */
 
 let remain =
 30 - Math.floor((diff % 30000) / 1000);
@@ -87,15 +150,30 @@ remain = 30;
 
 }
 
-document.getElementById("timer").innerText =
-"00:" + (remain < 10 ? "0"+remain : remain);
+/* FORMAT */
 
-/* ONLY LAST 3 DIGITS */
+let showRemain =
+remain < 10
+? "0"+remain
+: remain;
+
+/* =========================
+   SHOW TIMER
+========================= */
+
+document.getElementById("timer").innerText =
+"00:" + showRemain;
+
+/* =========================
+   SHOW ONLY LAST 3 DIGITS
+========================= */
 
 document.getElementById("period").innerText =
 String(currentPeriod).slice(-3);
 
-/* NEW SIGNAL */
+/* =========================
+   NEW SIGNAL
+========================= */
 
 if(lastPeriod != currentPeriod){
 
