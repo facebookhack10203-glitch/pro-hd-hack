@@ -1,4 +1,4 @@
-const basePeriod = 280;
+const basePeriod = 481;
 
 const baseTime =
 new Date(2025,4,13,11,40,0,0).getTime();
