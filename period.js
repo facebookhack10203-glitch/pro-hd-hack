@@ -1,33 +1,29 @@
 /* =========================
-   EXACT BDWIN24 PERIOD SYSTEM
+   LAST 3 DIGIT PERIOD SYSTEM
 ========================= */
 
 /*
 
-SYNC FIXED
+EXACT SYNC
 
-YOUR SITE WAS +500 AHEAD
-
-FIX:
-50458 -> 49958
+11:25:00 AM = 651
+11:25:30 AM = 652
+11:26:00 AM = 653
 
 EVERY 30 SEC = +1
 
 */
 
 /* =========================
-   BASE PERIOD
+   BASE DATA
 ========================= */
 
-const basePeriod =
-BigInt("20260513100049958");
+const basePeriod = 651;
 
-/* =========================
-   EXACT START TIME
-========================= */
+/* YEAR, MONTH(0-11), DATE, HOUR, MINUTE, SECOND */
 
 const baseTime =
-new Date(2025,4,13,9,49,0,0).getTime();
+new Date(2025,4,13,11,25,0,0).getTime();
 
 /* LAST PERIOD */
 
@@ -40,7 +36,9 @@ let lastPeriod = "";
 function generateSignal(period){
 
 let signal =
-Math.random() < 0.5 ? "BIG" : "SMALL";
+Math.random() < 0.5
+? "BIG"
+: "SMALL";
 
 let number;
 
@@ -55,8 +53,6 @@ number =
 Math.floor(Math.random()*5)+5;
 
 }
-
-/* COLOR */
 
 let color = "VIOLET";
 
@@ -82,9 +78,7 @@ number;
 document.getElementById("color").innerText =
 color;
 
-/* =========================
-   HISTORY
-========================= */
+/* HISTORY */
 
 let history =
 document.getElementById("history");
@@ -104,7 +98,7 @@ item.innerHTML =
 
 history.prepend(item);
 
-/* MAX 10 */
+/* MAX HISTORY */
 
 if(history.children.length > 10){
 
@@ -134,10 +128,7 @@ Math.floor(diff / 30000);
 /* CURRENT PERIOD */
 
 const currentPeriod =
-(
-basePeriod +
-BigInt(passedPeriods)
-).toString();
+basePeriod + passedPeriods;
 
 /* =========================
    TIMER
@@ -152,16 +143,12 @@ remain = 30;
 
 }
 
-/* FORMAT */
-
 let showRemain =
 remain < 10
 ? "0" + remain
 : remain;
 
-/* =========================
-   SHOW
-========================= */
+/* SHOW */
 
 document.getElementById("timer").innerText =
 "00:" + showRemain;
@@ -169,11 +156,9 @@ document.getElementById("timer").innerText =
 document.getElementById("period").innerText =
 currentPeriod;
 
-/* =========================
-   NEW SIGNAL
-========================= */
+/* NEW SIGNAL */
 
-if(lastPeriod !== currentPeriod){
+if(lastPeriod != currentPeriod){
 
 lastPeriod =
 currentPeriod;
