@@ -4,8 +4,9 @@
 ========================= */
 
 /* BASE PERIOD */
+/* +120 FIX APPLIED */
 
-const basePeriod = 481;
+const basePeriod = 601;
 
 /* BASE TIME */
 
@@ -44,7 +45,7 @@ Math.floor(Math.random()*5);
 
 }
 
-/* COLOR */
+/* COLOR SYSTEM */
 
 let color = "VIOLET";
 
@@ -64,7 +65,7 @@ color = "RED";
 let confidence =
 Math.floor(Math.random()*21)+70;
 
-/* SHOW */
+/* SHOW DATA */
 
 document.getElementById("signal").innerText =
 signal;
@@ -142,17 +143,19 @@ remain = 30;
 
 }
 
+/* FORMAT */
+
 let showRemain =
 remain < 10
 ? "0"+remain
 : remain;
 
-/* SHOW */
+/* SHOW TIMER */
 
 document.getElementById("timer").innerText =
 "00:" + showRemain;
 
-/* LAST 3 DIGITS */
+/* SHOW LAST 3 DIGITS */
 
 document.getElementById("period").innerText =
 String(currentPeriod).slice(-3);
