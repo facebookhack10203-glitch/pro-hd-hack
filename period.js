@@ -4,15 +4,15 @@
 ========================= */
 
 /* BASE PERIOD */
-/* SYNC FIX APPLIED */
+/* SYNCED WITH 1016 */
 
-const basePeriod = 7;
+const basePeriod = 1016;
 
 /* BASE TIME */
-/* 2026-05-15 02:23:00 */
+/* 2026-05-15 02:28:00 */
 
 const baseTime =
-new Date(2026,4,15,2,23,0,0).getTime();
+new Date(2026,4,15,14,28,0,0).getTime();
 
 /* LAST PERIOD */
 
@@ -97,7 +97,7 @@ item.innerHTML =
 " | 🔢 " + number +
 " | 🎨 " + color +
 " | 🔥 " + confidence + "%" +
-" | 🆔 " + String(currentPeriod).padStart(3,"0");
+" | 🆔 " + String(period).padStart(4,"0");
 
 history.prepend(item);
 
@@ -156,10 +156,10 @@ remain < 10
 document.getElementById("timer").innerText =
 "00:" + showRemain;
 
-/* SHOW LAST 3 DIGITS */
+/* SHOW LAST 4 DIGITS */
 
 document.getElementById("period").innerText =
-String(currentPeriod).padStart(3,"0");
+String(currentPeriod).padStart(4,"0");
 
 /* NEW SIGNAL */
 
