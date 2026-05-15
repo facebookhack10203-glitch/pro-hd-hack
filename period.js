@@ -4,12 +4,12 @@
 ========================= */
 
 /* BASE PERIOD */
-/* SYNCED WITH 1016 */
+/* FINAL +1 SYNC FIX */
 
-const basePeriod = 1016;
+const basePeriod = 1017;
 
 /* BASE TIME */
-/* 2026-05-15 02:28:00 */
+/* 2026-05-15 02:28:00 PM */
 
 const baseTime =
 new Date(2026,4,15,14,28,0,0).getTime();
