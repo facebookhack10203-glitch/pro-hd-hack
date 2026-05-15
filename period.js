@@ -4,9 +4,9 @@
 ========================= */
 
 /* BASE PERIOD */
-/* +120 FIX APPLIED */
+/* +120 NEW FIX APPLIED */
 
-const basePeriod = 601;
+const basePeriod = 721;
 
 /* BASE TIME */
 
