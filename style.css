@@ -1,0 +1,353 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:#fff;
+padding:15px;
+padding-bottom:90px;
+}
+
+/* PAGE */
+
+.page{
+display:none;
+animation:fade .3s ease;
+}
+
+.page.active{
+display:block;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* HEADER */
+
+.header-card{
+background:linear-gradient(
+135deg,
+#7c3aed,
+#4f46e5
+);
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.header-card p{
+opacity:.8;
+margin-top:8px;
+}
+
+.header-card h1{
+font-size:48px;
+margin:15px 0;
+}
+
+.claim-btn{
+width:100%;
+height:50px;
+border:none;
+border-radius:14px;
+background:#22c55e;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* STATS */
+
+.stats-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:15px;
+}
+
+.stat-box{
+background:#1e293b;
+padding:18px;
+border-radius:16px;
+text-align:center;
+}
+
+.stat-box h3{
+font-size:24px;
+color:#22c55e;
+}
+
+.stat-box p{
+opacity:.8;
+margin-top:5px;
+}
+
+/* MENU */
+
+.menu-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:15px;
+}
+
+.menu-card{
+background:#1e293b;
+padding:22px;
+border-radius:18px;
+text-align:center;
+cursor:pointer;
+transition:.2s;
+}
+
+.menu-card:hover{
+transform:scale(1.03);
+}
+
+.menu-card i{
+font-size:28px;
+display:block;
+margin-bottom:10px;
+}
+
+.menu-card span{
+font-size:15px;
+}
+
+/* TITLE */
+
+.top-title{
+margin-bottom:15px;
+}
+
+.top-title h2{
+font-size:24px;
+}
+
+/* TASK */
+
+.task-card{
+background:#1e293b;
+padding:18px;
+border-radius:18px;
+margin-bottom:12px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+
+.task-card h3{
+margin-bottom:5px;
+}
+
+.task-card p{
+font-size:14px;
+opacity:.8;
+}
+
+.task-card button{
+width:90px;
+height:42px;
+border:none;
+border-radius:10px;
+background:#22c55e;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* REF */
+
+.ref-card{
+background:#1e293b;
+padding:25px;
+border-radius:18px;
+text-align:center;
+}
+
+.ref-card h1{
+margin:15px 0;
+color:#22c55e;
+}
+
+.ref-card button{
+width:100%;
+height:50px;
+margin-top:15px;
+border:none;
+border-radius:12px;
+background:#22c55e;
+color:white;
+font-size:16px;
+}
+
+/* WITHDRAW */
+
+.withdraw-card{
+background:#1e293b;
+padding:20px;
+border-radius:18px;
+}
+
+.withdraw-card input{
+width:100%;
+height:50px;
+padding:0 12px;
+margin-bottom:12px;
+border:none;
+border-radius:12px;
+background:#0f172a;
+color:white;
+}
+
+.withdraw-card button{
+width:100%;
+height:50px;
+border:none;
+border-radius:12px;
+background:#22c55e;
+color:white;
+font-size:16px;
+}
+
+.history-card{
+background:#1e293b;
+padding:20px;
+border-radius:18px;
+margin-top:15px;
+}
+
+.history-card h3{
+margin-bottom:10px;
+}
+
+#historyBox{
+opacity:.8;
+}
+
+/* PROFILE */
+
+.profile-card{
+background:#1e293b;
+padding:25px;
+border-radius:18px;
+text-align:center;
+}
+
+.profile-avatar{
+width:90px;
+height:90px;
+border-radius:50%;
+background:#4f46e5;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:40px;
+
+margin:auto;
+margin-bottom:15px;
+}
+
+.profile-card h2{
+margin-top:10px;
+color:#22c55e;
+}
+
+.profile-card hr{
+margin:15px 0;
+border:none;
+height:1px;
+background:#374151;
+}
+
+.profile-item{
+background:#0f172a;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+text-align:left;
+}
+
+.profile-card button{
+width:100%;
+height:50px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+background:#22c55e;
+color:white;
+font-size:15px;
+}
+
+/* NAVIGATION */
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+
+background:#111827;
+
+display:flex;
+justify-content:space-around;
+
+padding:12px 0;
+
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+.bottom-nav div{
+text-align:center;
+cursor:pointer;
+}
+
+.bottom-nav i{
+font-size:20px;
+margin-bottom:4px;
+}
+
+.bottom-nav p{
+font-size:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+.header-card h1{
+font-size:40px;
+}
+
+.menu-card{
+padding:18px;
+}
+
+.task-card{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.task-card button{
+width:100%;
+}
+
+}
